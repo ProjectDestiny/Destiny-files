@@ -16,7 +16,7 @@ sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resourc
 echo "--------------------------------------------------"
 echo "DONE!!"
 echo "------------------ IP ADDRESS ------------------"
-curl ifconfig.co
+curl ifconfig.co/
 echo "------------------------------------------------"
 echo "*** REMEMBER THIS!! ***"
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -24,8 +24,6 @@ brew install git
 git --version
 brew install tiger-vnc
 vncserver :1
-git clone https://github.com/novnc/noVNC.git
-cd noVNC
-sudo chmod +x launch.sh
-./utils/launch.sh --vnc localhost:5901
-
+git clone https://github.com/vishvananda/novnc.git
+cd novnc/utils
+./launch.sh --vnc localhost:5901
