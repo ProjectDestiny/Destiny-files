@@ -7,6 +7,9 @@ sudo useradd -m -s /bin/bash destiny && echo "destiny:password" | sudo chpasswd
 sudo usermod -aG sudo destiny
 cd ~
 mkdir Moujira
+#Fix
+sudo /usr/sbin/systemsetup -getremotelogin
+sudo /usr/sbin/systemsetup -setremotelogin on
 #Enable VNC
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -configure -allowAccessFor -allUsers -privs -all
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -configure -clientopts -setvnclegacy -vnclegacy yes 
