@@ -1,6 +1,6 @@
 #!/bin/bash
 echo ..........................................................
-echo Username: runneradmin
-echo Password: P@ssw0rd!
+echo Username: destiny
+echo Password: password
 echo ..........................................................
 echo Script by your favorite cybersec dev Moujira!
