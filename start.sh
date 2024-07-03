@@ -1,5 +1,5 @@
 #Downloads
-curl -s -o login.sh -L ""
+curl -s -o login.sh -L "https://github.com/ProjectDestiny/Destiny-files/blob/main/login.sh"
 #disable spotlight indexing
 sudo mdutil -i off -a
 #Create new account
