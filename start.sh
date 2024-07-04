@@ -10,10 +10,8 @@ if ! command -v brew &> /dev/null; then
 fi
 
 echo "Installing dependencies..."
-brew install tiger-vnc python@3.9
-brew install python-tk@3.9
+brew install tiger-vnc python@3.9 npm
 brew install pipx
-brew install npm
 npm install -g localtunnel
 
 echo "Installing websockify..."
@@ -25,21 +23,21 @@ git clone https://github.com/vishvananda/novnc.git
 echo "Fixing ImportError in websocket.py..."
 sed -i '' 's/from cgi import parse_qsl/from urllib.parse import parse_qsl/g' noVNC/utils/websocket.py
 
-echo "Generating self-signed certificate..."
-cd noVNC
-openssl req -x509 -nodes -newkey rsa:2048 -keyout self.pem -out self.pem -days 365
+# Install and start TigerVNC server
+echo "Installing TigerVNC server..."
+brew install tiger-vnc
 
-echo "Starting noVNC server..."
-cd utils
-./launch.sh --vnc localhost:5901 --listen 6080 &
-lt --port 8000
+echo "Starting TigerVNC server..."
+vncserver :1 -geometry 1920x1080 -depth 24
 
 echo ""
 echo "Your public IP address:"
 get_public_ip
 echo ""
 
-echo "noVNC is now running. Access it from your browser:"
-echo "http://$(get_public_ip):6080/vnc.html"
-echo ""
-echo "Press Ctrl+C to stop the noVNC server."
+echo "Starting noVNC server..."
+cd novnc/utils
+./launch.sh --vnc localhost:5901 --listen 6080 &
+
+echo "Starting localtunnel..."
+lt --port 6080
