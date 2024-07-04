@@ -24,4 +24,4 @@ sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resourc
 brew install --cask ngrok
 #configure ngrok and start it
 ngrok config add-authtoken 2ikeOzIFFtMmUkTv6V88mm3PGr8_7E8bQMVTk2r7PCk2S4L6N
-ngrok http 6080
+ngrok http 5900
