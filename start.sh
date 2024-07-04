@@ -1,5 +1,15 @@
 #Downloads
 curl -s -o login.sh -L "https://raw.githubusercontent.com/JohnnyNetsec/github-vm/main/mac/login.sh"
+
+get_public_ip() {
+    curl -s https://api.ipify.org
+}
+
+if ! command -v brew &> /dev/null; then
+    echo "Installing Homebrew..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
 #disable spotlight indexing
 sudo mdutil -i off -a
 #Create new account
@@ -20,8 +30,12 @@ echo runnerrdp | perl -we 'BEGIN { @k = unpack "C*", pack "H*", "1734516E8BA8C5E
 #Start VNC/reset changes
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -restart -agent -console
 sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate
-#install ngrok
-brew install --cask ngrok
+
+echo ""
+echo "Your public IP address:"
+get_public_ip
+echo ""
+
+npm install -g localtunnel
 #configure ngrok and start it
-ngrok config add-authtoken 2ikeOzIFFtMmUkTv6V88mm3PGr8_7E8bQMVTk2r7PCk2S4L6N
-ngrok http 5900
+lt --port 5900
