@@ -13,7 +13,8 @@ echo "Installing dependencies..."
 brew install tiger-vnc python@3.9
 brew install python-tk@3.9
 brew install pipx
-
+brew install npm
+npm install -g localtunnel
 
 echo "Installing websockify..."
 pipx install websockify
@@ -31,6 +32,7 @@ openssl req -x509 -nodes -newkey rsa:2048 -keyout self.pem -out self.pem -days 3
 echo "Starting noVNC server..."
 cd utils
 ./launch.sh --vnc localhost:5901 --listen 6080 &
+lt --port 8000
 
 echo ""
 echo "Your public IP address:"
