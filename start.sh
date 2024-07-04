@@ -10,7 +10,7 @@ if ! command -v brew &> /dev/null; then
 fi
 
 echo "Installing dependencies..."
-brew install tiger-vnc openssl python@3.9
+brew install tiger-vnc python@3.9
 brew install python-tk@3.9
 brew install pipx
 
@@ -29,7 +29,8 @@ cd noVNC
 openssl req -x509 -nodes -newkey rsa:2048 -keyout self.pem -out self.pem -days 365
 
 echo "Starting noVNC server..."
-./utils/launch.sh --vnc localhost:5901 --listen 6080 &
+cd utils
+./launch.sh --vnc localhost:5901 --listen 6080 &
 
 echo ""
 echo "Your public IP address:"
